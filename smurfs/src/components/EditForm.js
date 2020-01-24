@@ -1,8 +1,9 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import axios from 'axios';
 import SmurfContext from '../contexts/SmurfContext'
 
-const Form = () => {
+const EditForm = (props) => {
+    const {editSmurf} = props;
     const {smurfs} = useContext(SmurfContext);
     const [newSmurf, setNewSmurf] = useState({
         name:'',
@@ -11,19 +12,26 @@ const Form = () => {
         id: ''
     })
 
+    useEffect(()=>{
+        console.log(editSmurf)
+        if (editSmurf){
+            setNewSmurf(editSmurf)
+        }
+    },[editSmurf])
+
+
     const handleChange = (e) => {
         e.preventDefault();
         setNewSmurf({
             ...newSmurf,
             [e.target.name]: e.target.value,
-            id: Date.now()
         })
         console.log(newSmurf);
     }
 
     const onSubmit = e => {
         e.preventDefault();
-        axios.post('http://localhost:3333/smurfs', newSmurf)
+        axios.put(`http://localhost:3333/smurfs/${editSmurf.id}`, newSmurf)
             .then(res => console.log(res))
             .catch(err => console.log(err))
         setNewSmurf({
@@ -35,16 +43,17 @@ const Form = () => {
     }
 
 
+
     return (
         <div>
             <form onSubmit={onSubmit}>
                 <input name="name" placeholder="name" onChange={handleChange} value={newSmurf.name} required/>
                 <input name="age" placeholder="age"onChange={handleChange} value={newSmurf.age} required/>
                 <input name="height" placeholder="height"onChange={handleChange} value={newSmurf.height} required/>
-                <button>Add Smurf</button>
+                <button>Edit Smurf</button>
             </form>
         </div>
     )
 }
 
-export default Form
+export default EditForm

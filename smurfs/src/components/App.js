@@ -8,6 +8,7 @@ import Form from '../components/Form'
 const App = () => {
 
   const [smurfs, setSmurfs] = useState();
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(()=>{
     axios.get('http://localhost:3333/smurfs')
@@ -21,7 +22,7 @@ const App = () => {
         <div>Welcome to your state management version of Smurfs!</div>
         <div>Start inside of your `src/index.js` file!</div>
         <div>Have fun!</div>
-        <SmurfContext.Provider value={{smurfs}}>
+        <SmurfContext.Provider value={{smurfs, isEditing, setIsEditing}}>
           <Form/>
           <Smurf/>
         </SmurfContext.Provider>
