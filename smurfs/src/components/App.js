@@ -4,6 +4,13 @@ import Smurf from './Smurf'
 import SmurfContext from '../contexts/SmurfContext'
 import axios from 'axios'
 import Form from '../components/Form'
+import styled from 'styled-components'
+
+const H1 = styled.h1`
+text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
+
+
+`;
 
 const App = () => {
 
@@ -18,7 +25,7 @@ const App = () => {
 
   return (
     <div className="App">
-        <h1>SMURFS 2.0! Now with <span class="redux">Redux</span> useContext!</h1>
+        <H1>SMURFS 2.0! Now with <span class="redux">Redux</span> useContext!</H1>
         <SmurfContext.Provider value={{smurfs, isEditing, setIsEditing}}>
           <Form/>
           <Smurf/>
