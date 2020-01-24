@@ -47,8 +47,8 @@ const SmurfCard = (props) => {
     return (
             <SmurfCardDiv>
                 <h1>{smurf.name}</h1>
-                <p>{smurf.age}</p>
-                <p>{smurf.height}</p>
+                <p>Age: {smurf.age}</p>
+                <p>Height: {smurf.height}</p>
                 <EditBtn id={smurf.id} onClick={edit}>Edit</EditBtn>
                 <DeleteBtn id={smurf.id} onClick={deleteSmurf}>Delete</DeleteBtn>
                 
