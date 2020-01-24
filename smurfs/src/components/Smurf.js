@@ -3,9 +3,17 @@ import SmurfContext from '../contexts/SmurfContext'
 import SmurfCard from './SmurfCard'
 import EditForm from './EditForm'
 import axios from 'axios'
+import styled from 'styled-components'
+
+const SmurfDiv= styled.div`
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+`;
 
 const Smurf = () => {
-    const {smurfs, isEditing, setIsEditing, setSmurfs} = useContext(SmurfContext);
+    const {smurfs, isEditing, setIsEditing} = useContext(SmurfContext);
     const [editSmurf, setEditSmurf] = useState();
 
     const edit = (e) => {
@@ -26,10 +34,13 @@ const Smurf = () => {
 
     return (
         <div>
-            <EditForm editSmurf={editSmurf}/>
-            {smurfs && smurfs.map(smurf=>{
+            {isEditing && <EditForm editSmurf={editSmurf} setIsEditing={setIsEditing}/>}
+            <SmurfDiv>
+                {smurfs && smurfs.map(smurf=>{
                 return <SmurfCard edit={edit} smurf={smurf} isEditing={isEditing} setIsEditing={setIsEditing} deleteSmurf={deleteSmurf}/>
             })}
+            </SmurfDiv>
+            
 
         </div>
     )
