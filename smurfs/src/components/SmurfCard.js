@@ -8,7 +8,7 @@ const SmurfCardDiv = styled.div`
 `;
 
 const SmurfCard = (props) => {
-    const {smurf, isEditing, setIsEditing, edit} = props;
+    const {smurf, edit, deleteSmurf} = props;
     // const [classes, setClasses] = useState("hide");
     
 
@@ -23,6 +23,7 @@ const SmurfCard = (props) => {
                 <p>{smurf.age}</p>
                 <p>{smurf.height}</p>
                 <button id={smurf.id} onClick={edit}>Edit</button>
+                <button id={smurf.id} onClick={deleteSmurf}>Delete</button>
                 
             </SmurfCardDiv>
             
